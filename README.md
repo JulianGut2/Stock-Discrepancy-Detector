@@ -41,4 +41,5 @@ pip install -r requirements.txt
 streamlit run .\app.py
 ```
 
-## DISCLAIMER: THIS IS NOT FINANCIAL ADVICE!!!
+## Disclaimer:
+This project is for educational and portfolio purposes. It is not financial advice and shoud not be used to make investment decisions.
