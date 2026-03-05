@@ -5,3 +5,4 @@ from src.disrepancy_detector import detect_zscore, detect_bollinger, detect_volu
 from src.utils import get_anomaly_summary
 
 st.set_page_config(page_title = "Stock Discrepancy Detector", layout = "wide")
+
