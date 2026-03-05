@@ -1,3 +1,13 @@
+---
+title: Stock Discrepancy Detector
+emoji: 📈
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_file: app.py
+pinned: false
+---
+
 # Stock Discrepancy Detector
 
 This project serves as a way to explore statistical anomalies within specified stock tickers. 
