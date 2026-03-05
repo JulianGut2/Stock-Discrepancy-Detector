@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 from scipy import stats
 
@@ -21,7 +20,25 @@ def detect_bollinger(df, window = 20, n_std = 2.0):
     return df
 
 
-def detect_volume_spike(df, threshhold = 2.5):
+def detect_volume_spike(df, threshold = 2.5):
     average_vol = df["Volume"].rolling(20).mean()
-    df["volume_anomaly"] = df["Volume"] > (threshhold * average_vol)
+    df["volume_anomaly"] = df["Volume"] > (threshold * average_vol)
+    return df
+
+
+def detect_iqr(df):
+    q1 = df["Return"].quantile(0.25)
+    q3 = df["Return"].quantile(0.75)
+    iqr = q3-q1
+
+    lower_fence = q1 - 1.5 * iqr
+    upper_fence = q3 + 1.5 * iqr
+
+    df["iqr_anomaly"] = (df["Return"] > upper_fence) | (df["Return"] < lower_fence)
+    return df
+
+
+def combine_signals(df):
+    df["flag_count"] = df[["zscore_anomaly", "bb_anomaly", "volume_anomaly", "iqr_anomaly"]].sum(axis = 1)
+    df["is_anomaly"] = df["flag_count"] >= 1
     return df
